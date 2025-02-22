@@ -12,7 +12,8 @@ import UIKit
 final class Platform: UseCasesProvider {
     // MARK: - Initialize
     init() {
-        // TODO: - Implementation will be later
+        let network = Network(baseURL: Environment.current.baseURL)
+        let serviceContext = ServiceContext(network: network) // TODO: - This will be used in future implementations
     }
     
     // MARK: - AppDelegate
