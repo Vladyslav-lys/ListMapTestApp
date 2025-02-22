@@ -11,8 +11,12 @@ final class AppCoordinator {
     // MARK: - Public Properties
     let window: UIWindow = UIWindow(frame: UIScreen.main.bounds)
     
+    // MARK: - Private Properties
+    private let useCases: UseCasesProvider
+    
     // MARK: - Initialize
-    init() {
+    init(useCases: UseCasesProvider) {
+        self.useCases = useCases
         start()
     }
     

@@ -35,6 +35,8 @@
 		2743EDCD2D6A7E84003FE9CB /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2743EDBF2D6A7E84003FE9CB /* APIError.swift */; };
 		2743EDD02D6A7EC4003FE9CB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2743EDCF2D6A7EC4003FE9CB /* Alamofire */; };
 		2743EDD42D6A7FCD003FE9CB /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2743EDD32D6A7FCD003FE9CB /* AppCoordinator.swift */; };
+		2743EDD62D6A8109003FE9CB /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2743EDD52D6A8109003FE9CB /* Platform.swift */; };
+		2743EDDA2D6A815A003FE9CB /* UseCasesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2743EDD92D6A815A003FE9CB /* UseCasesProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +99,8 @@
 		2743EDBD2D6A7E84003FE9CB /* CachedRequestConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedRequestConvertible.swift; sourceTree = "<group>"; };
 		2743EDBF2D6A7E84003FE9CB /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		2743EDD32D6A7FCD003FE9CB /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		2743EDD52D6A8109003FE9CB /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
+		2743EDD92D6A815A003FE9CB /* UseCasesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCasesProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,12 +154,14 @@
 		273C9A192D66675200B9D88D /* ListMapTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				2743EDD72D6A8146003FE9CB /* Components */,
 				273C9A1A2D66675200B9D88D /* AppDelegate.swift */,
 				2743EDD32D6A7FCD003FE9CB /* AppCoordinator.swift */,
+				2743EDD52D6A8109003FE9CB /* Platform.swift */,
 				273C9A1E2D66675200B9D88D /* ViewController.swift */,
 				273C9A232D66675300B9D88D /* Assets.xcassets */,
-				273C9A252D66675300B9D88D /* LaunchScreen.storyboard */,
 				273C9A282D66675300B9D88D /* Info.plist */,
+				273C9A252D66675300B9D88D /* LaunchScreen.storyboard */,
 			);
 			path = ListMapTestApp;
 			sourceTree = "<group>";
@@ -278,6 +284,22 @@
 				2743EDBF2D6A7E84003FE9CB /* APIError.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		2743EDD72D6A8146003FE9CB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				2743EDD82D6A814C003FE9CB /* Protocols */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		2743EDD82D6A814C003FE9CB /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				2743EDD92D6A815A003FE9CB /* UseCasesProvider.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -440,8 +462,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2743EDDA2D6A815A003FE9CB /* UseCasesProvider.swift in Sources */,
 				2743EDD42D6A7FCD003FE9CB /* AppCoordinator.swift in Sources */,
 				273C9A1F2D66675200B9D88D /* ViewController.swift in Sources */,
+				2743EDD62D6A8109003FE9CB /* Platform.swift in Sources */,
 				273C9A1B2D66675200B9D88D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -704,7 +728,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -716,11 +740,15 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.vladyslav..Services;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -742,7 +770,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -754,10 +782,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.vladyslav..Services;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
