@@ -5,7 +5,7 @@
 //  Created by Vladyslav Lysenko on 22.02.2025.
 //
 
-import Network
+import NetworkLayer
 
 public final class ServiceContext {
     let network: Network

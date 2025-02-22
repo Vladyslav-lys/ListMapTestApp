@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "273C9A362D68CB1800B9D88D"
-               BuildableName = "Network.framework"
-               BlueprintName = "Network"
+               BlueprintIdentifier = "2743ED9F2D6A7E23003FE9CB"
+               BuildableName = "NetworkLayer.framework"
+               BlueprintName = "NetworkLayer"
                ReferencedContainer = "container:ListMapTestApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
