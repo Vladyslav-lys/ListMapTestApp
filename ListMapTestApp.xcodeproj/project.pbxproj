@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		273C5CDD2D6A901F00EAA7E8 /* Environment.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273C5CDC2D6A901F00EAA7E8 /* Environment.generated.swift */; };
 		273C5CE12D6A904B00EAA7E8 /* Environment+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273C5CE02D6A904B00EAA7E8 /* Environment+Extension.swift */; };
+		273C5CE42D6B2AFD00EAA7E8 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 273C5CE32D6B2AFD00EAA7E8 /* RswiftLibrary */; };
 		273C9A1B2D66675200B9D88D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273C9A1A2D66675200B9D88D /* AppDelegate.swift */; };
 		273C9A1F2D66675200B9D88D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273C9A1E2D66675200B9D88D /* ViewController.swift */; };
 		273C9A242D66675300B9D88D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 273C9A232D66675300B9D88D /* Assets.xcassets */; };
@@ -116,6 +117,7 @@
 			files = (
 				2743EDA62D6A7E23003FE9CB /* NetworkLayer.framework in Frameworks */,
 				273C9A742D6A6CD100B9D88D /* Services.framework in Frameworks */,
+				273C5CE42D6B2AFD00EAA7E8 /* RswiftLibrary in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,10 +388,12 @@
 			buildRules = (
 			);
 			dependencies = (
+				273C5CE62D6B2B2400EAA7E8 /* PBXTargetDependency */,
 				273C9A732D6A6CD100B9D88D /* PBXTargetDependency */,
 			);
 			name = ListMapTestApp;
 			packageProductDependencies = (
+				273C5CE32D6B2AFD00EAA7E8 /* RswiftLibrary */,
 			);
 			productName = ListMapTestApp;
 			productReference = 273C9A172D66675200B9D88D /* ListMapTestApp.app */;
@@ -469,6 +473,7 @@
 			mainGroup = 273C9A0E2D66675200B9D88D;
 			packageReferences = (
 				2743EDE72D6A8941003FE9CB /* XCRemoteSwiftPackageReference "Alamofire" */,
+				273C5CE22D6B2AFD00EAA7E8 /* XCRemoteSwiftPackageReference "R" */,
 			);
 			productRefGroup = 273C9A182D66675200B9D88D /* Products */;
 			projectDirPath = "";
@@ -577,6 +582,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		273C5CE62D6B2B2400EAA7E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 273C5CE52D6B2B2400EAA7E8 /* RswiftGenerateInternalResources */;
+		};
 		273C9A732D6A6CD100B9D88D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 273C9A6D2D6A6CD000B9D88D /* Services */;
@@ -988,6 +997,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		273C5CE22D6B2AFD00EAA7E8 /* XCRemoteSwiftPackageReference "R" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mac-cain13/R.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.8.0;
+			};
+		};
 		2743EDE72D6A8941003FE9CB /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -999,6 +1016,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		273C5CE32D6B2AFD00EAA7E8 /* RswiftLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 273C5CE22D6B2AFD00EAA7E8 /* XCRemoteSwiftPackageReference "R" */;
+			productName = RswiftLibrary;
+		};
+		273C5CE52D6B2B2400EAA7E8 /* RswiftGenerateInternalResources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 273C5CE22D6B2AFD00EAA7E8 /* XCRemoteSwiftPackageReference "R" */;
+			productName = "plugin:RswiftGenerateInternalResources";
+		};
 		2743EDE82D6A8941003FE9CB /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2743EDE72D6A8941003FE9CB /* XCRemoteSwiftPackageReference "Alamofire" */;
