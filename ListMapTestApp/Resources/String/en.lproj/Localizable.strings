@@ -5,3 +5,7 @@
   Created by Vladyslav Lysenko on 23.02.2025.
   
 */
+
+"download.maps" = "Download Maps";
+"device.memory" = "Device memory";
+"free.gb" = "Free %@ Gb";

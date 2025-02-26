@@ -13,6 +13,7 @@ final class AppCoordinator {
     
     // MARK: - Private Properties
     private let useCases: UseCasesProvider
+    private var mapsCoordinator: Coordinator?
     
     // MARK: - Initialize
     init(useCases: UseCasesProvider) {
@@ -20,9 +21,12 @@ final class AppCoordinator {
         start()
     }
     
+    // MARK: - Start
     private func start() {
-        let presenter = UINavigationController(rootViewController: ViewController())
+        let presenter = BaseNavigationVC()
         window.rootViewController = presenter
+        mapsCoordinator = MapsCoordinator(presenter: presenter, useCases: useCases)
+        mapsCoordinator?.start()
         window.makeKeyAndVisible()
     }
 }

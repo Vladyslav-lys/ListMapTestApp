@@ -5,6 +5,12 @@
 //  Created by Vladyslav Lysenko on 23.02.2025.
 //
 
-import Foundation
+import Services
 
-protocol UseCasesProvider {}
+protocol HasMemoryUseCases {
+    var memory: MemoryUseCases { get }
+}
+
+typealias UseCases = HasMemoryUseCases
+
+protocol UseCasesProvider: UseCases {}
