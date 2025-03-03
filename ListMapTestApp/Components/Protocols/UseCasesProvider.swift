@@ -11,6 +11,10 @@ protocol HasMemoryUseCases {
     var memory: MemoryUseCases { get }
 }
 
-typealias UseCases = HasMemoryUseCases
+protocol HasMapsUseCases {
+    var maps: MapsUseCases { get }
+}
+
+typealias UseCases = HasMemoryUseCases & HasMapsUseCases
 
 protocol UseCasesProvider: UseCases {}

@@ -15,7 +15,7 @@ final class MapsVC: BaseVC, ViewModelContainer {
     // MARK: - Views
     private lazy var tableView: UITableView = {
         var tableView = UITableView.init(frame: .zero, style: .grouped)
-        tableView.register(MemoryTVC.self)
+        tableView.register(MemoryTVC.self, RegionTVC.self)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         return tableView
@@ -34,11 +34,11 @@ final class MapsVC: BaseVC, ViewModelContainer {
         setupViewModel()
         
         viewModel.$freeSpace
-            .combineLatest(viewModel.$totalSpace)
+            .combineLatest(viewModel.$totalSpace, viewModel.$continents)
             .sink { [weak self] tuple in
                 guard let self else { return }
-                let (freeSpace, totalSpace) = tuple
-                let snapshot = self.makeSnapshot(freeSpace: freeSpace, totalSpace: totalSpace)
+                let (freeSpace, totalSpace, continents) = tuple
+                let snapshot = self.makeSnapshot(freeSpace: freeSpace, totalSpace: totalSpace, continents: continents)
                 self.dataSource.apply(snapshot, animatingDifferences: false)
             }
             .store(in: &subscriptions)
@@ -67,4 +67,3 @@ final class MapsVC: BaseVC, ViewModelContainer {
         ])
     }
 }
-
