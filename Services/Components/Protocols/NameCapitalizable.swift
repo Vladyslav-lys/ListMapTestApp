@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol NameCapitalizable {
+public protocol NameCapitalizable: AnyObject {
     var capitilizedName: String { get }
 }

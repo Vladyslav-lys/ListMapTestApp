@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol FilenamePreparing {
+public protocol FilenamePreparing: AnyObject {
     var filename: String { get }
 }

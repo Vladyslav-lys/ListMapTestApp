@@ -22,7 +22,7 @@ extension MapsVC {
     }
     
     func makeDataSource(tableView: UITableView) -> DataSource {
-        DataSource(tableView: tableView)
+        DataSource(regionTVCDelegate: self, tableView: tableView)
     }
     
     func makeSnapshot(freeSpace: Int64, totalSpace: Int64, continents: [Continent]) -> Snapshot {
@@ -41,7 +41,7 @@ extension MapsVC {
 
 extension MapsVC {
     final class DataSource: UITableViewDiffableDataSource<Section, Item> {
-        init(tableView: UITableView) {
+        init(regionTVCDelegate: RegionTVCDelegate?, tableView: UITableView) {
             super.init(tableView: tableView) { tableView, indexPath, item in
                 switch item {
                 case .memory(let freeSpace, let totalSpace):
@@ -50,13 +50,8 @@ extension MapsVC {
                     }
                 case .countries(let country):
                     tableView.makeCell(RegionTVC.self, for: indexPath) {
-                        $0.configure(
-                            name: country.name,
-                            filename: country.filename,
-                            progress: country.progress,
-                            hasChildren: !country.regions.isEmpty,
-                            hasMap: country.hasMap
-                        )
+                        $0.configure(flow: .country(country: country))
+                        $0.delegate = regionTVCDelegate
                     }
                 }
             }

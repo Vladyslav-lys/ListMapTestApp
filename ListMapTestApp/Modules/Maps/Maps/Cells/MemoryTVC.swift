@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MemoryTVC: UITableViewCell {
+final class MemoryTVC: BaseTableViewCell {
     // MARK: - Constants
     private enum PrivateConstants {
         static let horizontalSpace: CGFloat = 16
@@ -65,7 +65,6 @@ final class MemoryTVC: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupBackgroundColor()
         setupProgressView()
         setupDeviceMemoryLabel()
         setupFreeMemoryLabel()
@@ -73,10 +72,6 @@ final class MemoryTVC: UITableViewCell {
     }
     
     // MARK: - Setup
-    private func setupBackgroundColor() {
-        contentView.backgroundColor = .white
-    }
-    
     private func setupProgressView() {
         contentView.addSubview(progressView)
         
@@ -113,7 +108,7 @@ final class MemoryTVC: UITableViewCell {
         contentView.addSubview(dividerView)
         
         NSLayoutConstraint.activate([
-            dividerView.heightAnchor.constraint(equalToConstant: 1),
+            dividerView.heightAnchor.constraint(equalToConstant: Constants.dividerHeight),
             dividerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: .zero),
             dividerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: .zero),
             dividerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: .zero)

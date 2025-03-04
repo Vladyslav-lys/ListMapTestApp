@@ -9,3 +9,4 @@
 "download.maps" = "Download Maps";
 "device.memory" = "Device memory";
 "free.gb" = "Free %@ Gb";
+"regions" = "regions";

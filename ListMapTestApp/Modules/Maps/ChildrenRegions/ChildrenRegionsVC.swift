@@ -1,22 +1,22 @@
 //
-//  MapsVC.swift
+//  ChildrenRegionsVC.swift
 //  ListMapTestApp
 //
-//  Created by Vladyslav Lysenko on 19.02.2025.
+//  Created by Vladyslav Lysenko on 03.03.2025.
 //
 
 import UIKit
 import Services
 
-extension MapsVC: Makeable {
-    static func make() -> MapsVC { MapsVC() }
+extension ChildrenRegionsVC: Makeable {
+    static func make() -> ChildrenRegionsVC { ChildrenRegionsVC() }
 }
 
-final class MapsVC: BaseVC, ViewModelContainer {
+final class ChildrenRegionsVC: BaseVC, ViewModelContainer {
     // MARK: - Views
     private lazy var tableView: UITableView = {
         var tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.register(MemoryTVC.self, RegionTVC.self)
+        tableView.register(RegionTVC.self)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         return tableView
@@ -26,7 +26,7 @@ final class MapsVC: BaseVC, ViewModelContainer {
     private lazy var dataSource = makeDataSource(tableView: tableView)
     
     // MARK: - View model
-    var viewModel: MapsVM?
+    var viewModel: ChildrenRegionsVM?
     
     // MARK: - Lifecycle
     override func bind() {
@@ -34,12 +34,11 @@ final class MapsVC: BaseVC, ViewModelContainer {
         guard let viewModel else { return }
         setupViewModel()
         
-        viewModel.$freeSpace
-            .combineLatest(viewModel.$totalSpace, viewModel.$continents)
-            .sink { [weak self] tuple in
+        viewModel.$regionFlow
+            .sink { [weak self] regionFlow in
                 guard let self else { return }
-                let (freeSpace, totalSpace, continents) = tuple
-                let snapshot = self.makeSnapshot(freeSpace: freeSpace, totalSpace: totalSpace, continents: continents)
+                self.setupNavigationBarTitle(with: regionFlow)
+                let snapshot = self.makeSnapshot(regionFlow: regionFlow)
                 self.dataSource.apply(snapshot, animatingDifferences: false)
             }
             .store(in: &subscriptions)
@@ -47,14 +46,17 @@ final class MapsVC: BaseVC, ViewModelContainer {
     
     override func setupVC() {
         super.setupVC()
-        setupNavigationBarTitle()
+        setupNavigationBarStyle()
         setupTableView()
-        viewModel?.getSpace()
     }
     
     // MARK: - Setup
-    private func setupNavigationBarTitle() {
-        navigationItem.title = R.string.localizable.downloadMaps()
+    private func setupNavigationBarTitle(with regionFlow: RegionFlow) {
+        navigationItem.title = regionFlow.capitilizedName
+    }
+    
+    private func setupNavigationBarStyle() {
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     private func setupTableView() {
@@ -70,7 +72,7 @@ final class MapsVC: BaseVC, ViewModelContainer {
 }
 
 // MARK: - RegionTVCDelegate
-extension MapsVC: RegionTVCDelegate {
+extension ChildrenRegionsVC: RegionTVCDelegate {
     func didTappedAction(_ cell: RegionTVC, regionFlow: RegionFlow) {
         viewModel?.showRegionList(with: regionFlow)
     }
