@@ -39,7 +39,6 @@ final class MemoryTVC: BaseTableViewCell {
     private lazy var progressView: UIProgressView = {
         var progressView = UIProgressView(progressViewStyle: .bar)
         progressView.translatesAutoresizingMaskIntoConstraints = false
-        progressView.setProgress(0.5, animated: false)
         progressView.trackTintColor = .ghostWhite
         progressView.progressTintColor = .mandarin
         progressView.layer.cornerRadius = PrivateConstants.progressRadius
@@ -119,5 +118,8 @@ final class MemoryTVC: BaseTableViewCell {
     func configure(freeSpace: Int64, totalSpace: Int64) {
         deviceMemoryLabel.text = R.string.localizable.deviceMemory()
         freeMemoryLabel.text = R.string.localizable.freeGb(freeSpace.gbString)
+        
+        let occupiedSpace = (totalSpace.toGB - freeSpace.toGB) / totalSpace.toGB
+        progressView.setProgress(Float(occupiedSpace), animated: false)
     }
 }
