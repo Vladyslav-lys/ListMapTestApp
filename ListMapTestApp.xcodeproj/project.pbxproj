@@ -17,6 +17,10 @@
 		272E7F082D76439D00865F7B /* ChildrenRegionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272E7F072D76439D00865F7B /* ChildrenRegionsVC.swift */; };
 		272E7F0B2D7643C200865F7B /* ChildrenRegionsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272E7F0A2D7643C200865F7B /* ChildrenRegionsVM.swift */; };
 		272E7F0E2D76459500865F7B /* ChildrenRegionsVC+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272E7F0D2D76459500865F7B /* ChildrenRegionsVC+DataSource.swift */; };
+		272E7F142D78909300865F7B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272E7F132D78909300865F7B /* API.swift */; };
+		272E7F172D7890BB00865F7B /* API+Maps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272E7F162D7890BB00865F7B /* API+Maps.swift */; };
+		272E7F2A2D79F40500865F7B /* NSDiffableDataSourceSnapshot+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272E7F292D79F40500865F7B /* NSDiffableDataSourceSnapshot+Extensions.swift */; };
+		272E7F2F2D7A2A9600865F7B /* RegionFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272E7F2E2D7A2A9600865F7B /* RegionFlow.swift */; };
 		273C5CDD2D6A901F00EAA7E8 /* Environment.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273C5CDC2D6A901F00EAA7E8 /* Environment.generated.swift */; };
 		273C5CE12D6A904B00EAA7E8 /* Environment+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273C5CE02D6A904B00EAA7E8 /* Environment+Extension.swift */; };
 		273C5CE42D6B2AFD00EAA7E8 /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 273C5CE32D6B2AFD00EAA7E8 /* RswiftLibrary */; };
@@ -126,6 +130,10 @@
 		272E7F072D76439D00865F7B /* ChildrenRegionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenRegionsVC.swift; sourceTree = "<group>"; };
 		272E7F0A2D7643C200865F7B /* ChildrenRegionsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenRegionsVM.swift; sourceTree = "<group>"; };
 		272E7F0D2D76459500865F7B /* ChildrenRegionsVC+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChildrenRegionsVC+DataSource.swift"; sourceTree = "<group>"; };
+		272E7F132D78909300865F7B /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		272E7F162D7890BB00865F7B /* API+Maps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+Maps.swift"; sourceTree = "<group>"; };
+		272E7F292D79F40500865F7B /* NSDiffableDataSourceSnapshot+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDiffableDataSourceSnapshot+Extensions.swift"; sourceTree = "<group>"; };
+		272E7F2E2D7A2A9600865F7B /* RegionFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionFlow.swift; sourceTree = "<group>"; };
 		273C5CDC2D6A901F00EAA7E8 /* Environment.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.generated.swift; sourceTree = "<group>"; };
 		273C5CE02D6A904B00EAA7E8 /* Environment+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Environment+Extension.swift"; sourceTree = "<group>"; };
 		273C5CEA2D6B2B6D00EAA7E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -253,6 +261,31 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		272E7F112D78908B00865F7B /* API */ = {
+			isa = PBXGroup;
+			children = (
+				272E7F152D7890A700865F7B /* Maps */,
+				272E7F132D78909300865F7B /* API.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		272E7F152D7890A700865F7B /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				272E7F162D7890BB00865F7B /* API+Maps.swift */,
+			);
+			path = Maps;
+			sourceTree = "<group>";
+		};
+		272E7F2C2D7A2A8E00865F7B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				272E7F2E2D7A2A9600865F7B /* RegionFlow.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		273C5CDE2D6A902D00EAA7E8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				273C5D2A2D6DCE2200EAA7E8 /* UITableView+Extensions.swift */,
+				272E7F292D79F40500865F7B /* NSDiffableDataSourceSnapshot+Extensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -522,6 +556,7 @@
 		2743EDA12D6A7E23003FE9CB /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
+				272E7F112D78908B00865F7B /* API */,
 				2743EDB42D6A7E84003FE9CB /* Extensions */,
 				2743EDBE2D6A7E84003FE9CB /* Internal */,
 				2743EDC02D6A7E84003FE9CB /* Models */,
@@ -615,6 +650,7 @@
 		2743EDD72D6A8146003FE9CB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				272E7F2C2D7A2A8E00865F7B /* Models */,
 				272E7EFB2D763E6300865F7B /* Constants */,
 				273C5D202D6D053C00EAA7E8 /* Utils */,
 				273C5CFA2D6CECA000EAA7E8 /* Base */,
@@ -861,9 +897,11 @@
 				273C5D142D6CF5D000EAA7E8 /* ViewModelContainer.swift in Sources */,
 				272E7F002D763EE200865F7B /* BaseTableViewCell.swift in Sources */,
 				2743EDD42D6A7FCD003FE9CB /* AppCoordinator.swift in Sources */,
+				272E7F2F2D7A2A9600865F7B /* RegionFlow.swift in Sources */,
 				273C5D032D6CEF0A00EAA7E8 /* Coordinator.swift in Sources */,
 				273C5D222D6D054E00EAA7E8 /* With.swift in Sources */,
 				272E7EFD2D763E6D00865F7B /* Constants.swift in Sources */,
+				272E7F2A2D79F40500865F7B /* NSDiffableDataSourceSnapshot+Extensions.swift in Sources */,
 				273C5D122D6CF4F100EAA7E8 /* BaseVC.swift in Sources */,
 				273C5D2B2D6DCE2200EAA7E8 /* UITableView+Extensions.swift in Sources */,
 				273C5D1E2D6D029A00EAA7E8 /* BaseNavigationVC.swift in Sources */,
@@ -920,8 +958,10 @@
 				2743EDC12D6A7E84003FE9CB /* APIError+Status.swift in Sources */,
 				2743EDC42D6A7E84003FE9CB /* Network+Response.swift in Sources */,
 				2743EDC52D6A7E84003FE9CB /* Network+Task.swift in Sources */,
+				272E7F172D7890BB00865F7B /* API+Maps.swift in Sources */,
 				2743EDC92D6A7E84003FE9CB /* RequestConvertible.swift in Sources */,
 				2743EDCA2D6A7E84003FE9CB /* With.swift in Sources */,
+				272E7F142D78909300865F7B /* API.swift in Sources */,
 				2743EDC32D6A7E84003FE9CB /* Network+Async.swift in Sources */,
 				2743EDCC2D6A7E84003FE9CB /* CachedRequestConvertible.swift in Sources */,
 				2743EDC72D6A7E84003FE9CB /* Network.swift in Sources */,

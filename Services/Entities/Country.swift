@@ -12,14 +12,16 @@ public class Country {
     public let hasMap: Bool
     public unowned var continent: Continent
     public var regions: [Region]
-    public var progress: Double
+    public var progress: Int64
+    public var totalProgress: Int64
     
-    init(name: String, continent: Continent, regions: [Region], hasMap: Bool, progress: Double = 0) {
+    init(name: String, continent: Continent, regions: [Region], hasMap: Bool, progress: Int64 = 0, totalProgress: Int64 = 0) {
         self.name = name
         self.continent = continent
         self.regions = regions
         self.hasMap = hasMap
         self.progress = progress
+        self.totalProgress = totalProgress
     }
 }
 

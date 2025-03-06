@@ -13,15 +13,17 @@ public class Province: Identifiable {
     public let hasMap: Bool
     public unowned var region: Region
     public var districts: [District]
-    public var progress: Double
+    public var progress: Int64
+    public var totalProgress: Int64
     
-    init(name: String, region: Region, districts: [District], hasMap: Bool, progress: Double = 0) {
+    init(name: String, region: Region, districts: [District], hasMap: Bool, progress: Int64 = 0, totalProgress: Int64 = 0) {
         id = UUID().uuidString
         self.name = name
         self.region = region
         self.districts = districts
         self.progress = progress
         self.hasMap = hasMap
+        self.totalProgress = totalProgress
     }
 }
 

@@ -11,6 +11,9 @@ public protocol RequestConvertible {
     /// Base URL for request, takes precedence over `baseURL` in `Network` if specified.
     var baseURL: URL? { get }
     
+    /// The path to be appended to `baseURL` to form the full `URL`.
+    var path: String { get }
+    
     /// The HTTP method used in the request.
     var method: Network.Method? { get }
 
@@ -26,5 +29,5 @@ extension RequestConvertible {
 
     public var headers: Network.Headers? { nil }
     
-    public var methods: Network.Method? { nil }
+    public var method: Network.Method? { nil }
 }

@@ -7,19 +7,21 @@
 
 import Foundation
 
-public class District: Identifiable {
+public class District {
     public let id: String
     public let name: String
     public let hasMap: Bool
     public unowned var province: Province
-    public var progress: Double
+    public var progress: Int64
+    public var totalProgress: Int64
     
-    init(name: String, province: Province, hasMap: Bool, progress: Double = 0) {
+    init(name: String, province: Province, hasMap: Bool, progress: Int64 = 0, totalProgress: Int64 = 0) {
         id = UUID().uuidString
         self.name = name
         self.province = province
         self.progress = progress
         self.hasMap = hasMap
+        self.totalProgress = totalProgress
     }
 }
 

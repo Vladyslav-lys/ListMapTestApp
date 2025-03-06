@@ -20,7 +20,15 @@ extension ChildrenRegionsVC {
     }
     
     func makeDataSource(tableView: UITableView) -> DataSource {
-        DataSource(regionTVCDelegate: self, tableView: tableView)
+        DataSource(tableView: tableView) { [weak self] tableView, indexPath, itemIdentifier in
+            switch itemIdentifier {
+            case .region(let regionFlow):
+                tableView.makeCell(RegionTVC.self, for: indexPath) {
+                    $0.configure(flow: regionFlow)
+                    $0.delegate = self
+                }
+            }
+        }
     }
     
     func makeSnapshot(regionFlow: RegionFlow) -> Snapshot {
@@ -49,18 +57,6 @@ extension ChildrenRegionsVC {
 
 extension ChildrenRegionsVC {
     final class DataSource: UITableViewDiffableDataSource<Section, Item> {
-        init(regionTVCDelegate: RegionTVCDelegate?, tableView: UITableView) {
-            super.init(tableView: tableView) { tableView, indexPath, item in
-                switch item {
-                case .region(let regionFlow):
-                    tableView.makeCell(RegionTVC.self, for: indexPath) {
-                        $0.configure(flow: regionFlow)
-                        $0.delegate = regionTVCDelegate
-                    }
-                }
-            }
-        }
-        
         override func tableView(_ tableView: UITableView,  titleForHeaderInSection section: Int) -> String? {
             R.string.localizable.regions()
         }

@@ -12,6 +12,7 @@ final public class Network {
     public typealias Request = Alamofire.Request
     public typealias Completion = (ResponseResult) -> Void
     public typealias DownloadDestination = DownloadRequest.Destination
+    public typealias RequestProgress = (Progress) -> Void
     public typealias Method = Alamofire.HTTPMethod
     public typealias MultipartFormDataBuilder = (MultipartFormData) -> Void
     public typealias Header = HTTPHeader
@@ -35,13 +36,24 @@ final public class Network {
             startRequestsImmediately: false
         )
     }
+    
+    public class func suggestedDownloadDestination(name: String,
+                                                   for directory: FileManager.SearchPathDirectory = .documentDirectory,
+                                                   in domain: FileManager.SearchPathDomainMask = .userDomainMask,
+                                                   options: DownloadRequest.Options = [.removePreviousFile, .createIntermediateDirectories]) -> DownloadDestination {
+        { temporaryURL, _ in
+            let directoryURLs = FileManager.default.urls(for: directory, in: domain)
+            let url = directoryURLs.first?.appendingPathComponent(name) ?? temporaryURL
+            return (url, options)
+        }
+    }
 
     func request(
         _ target: RequestConvertible,
         qos: DispatchQoS.QoSClass = .default,
-        progress: ((Double) -> Void)? = nil,
+        progress: ((Int64, Int64) -> Void)? = nil,
         completion: @escaping Completion
-    ) {
+    ) -> Request? {
         performRequest(
             CachedRequestConvertible(target),
             queue: .global(qos: qos),
@@ -54,9 +66,9 @@ final public class Network {
     private func performRequest(
         _ target: RequestConvertible,
         queue: DispatchQueue,
-        progress: ((Double) -> Void)? = nil,
+        progress: ((Int64, Int64) -> Void)? = nil,
         completion: @escaping Completion
-    ) {
+    ) -> Request? {
         let commonCompletion: Completion = { result in
             completion(result)
         }
@@ -85,6 +97,7 @@ final public class Network {
             queue.async {
                 commonCompletion(.failure(error))
             }
+            return nil
         }
     }
 
@@ -94,7 +107,7 @@ final public class Network {
         queue: DispatchQueue,
         target: RequestConvertible,
         completion: @escaping Completion
-    ) {
+    ) -> Request {
         let task = session
             .request(request)
             .responseData(queue: queue) { responseData in
@@ -104,6 +117,7 @@ final public class Network {
                 completion(Result { Response(data: responseData.data ?? Data(), response: response) })
             }
         task.resume()
+        return task
     }
 
     // MARK: - Download request
@@ -112,12 +126,14 @@ final public class Network {
         destination: DownloadDestination?,
         queue: DispatchQueue,
         target: RequestConvertible,
-        progress: ((Double) -> Void)?,
+        progress: ((Int64, Int64) -> Void)?,
         completion: @escaping Completion
-    ) {
+    ) -> Request {
         let task = session
             .download(request, to: destination)
-            .downloadProgress(closure: { progress?($0.fractionCompleted) })
+            .downloadProgress(closure: {
+                progress?($0.totalUnitCount, $0.completedUnitCount)
+            })
             .responseData(queue: queue) { responseData in
                 guard let data = responseData.value,
                       let response = responseData.response,
@@ -127,6 +143,7 @@ final public class Network {
                 completion(Result { Response(data: data, response: response) })
             }
         task.resume()
+        return task
     }
 
     // MARK: - URLRequest builder
@@ -136,6 +153,7 @@ final public class Network {
 
     private func makeURLRequest(for target: RequestConvertible) throws -> URLRequest {
         let url = try makeBaseURL(for: target)
+            .appendingPathComponent(target.path)
         var request = try URLRequest(url: url).encoded(for: target)
         request.httpMethod = target.method?.rawValue
         target.headers?.dictionary.forEach { request.setValue($1, forHTTPHeaderField: $0) }

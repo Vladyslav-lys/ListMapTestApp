@@ -42,12 +42,31 @@ final class ChildrenRegionsVC: BaseVC, ViewModelContainer {
                 self.dataSource.apply(snapshot, animatingDifferences: false)
             }
             .store(in: &subscriptions)
+        
+        viewModel.$downloadingFlows
+            .map(\.values)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] regionFlows in
+                guard let self else { return }
+                var snapshot = self.dataSource.snapshot()
+                snapshot.reloadItems(regionFlows.map { .region(regionFlow: $0) })
+                self.dataSource.apply(snapshot, animatingDifferences: false)
+                
+            }
+            .store(in: &subscriptions)
     }
     
     override func setupVC() {
         super.setupVC()
         setupNavigationBarStyle()
         setupTableView()
+    }
+    
+    deinit {
+        print("\(#function) \(self)")
+        subscriptions.forEach { $0.cancel() }
+        subscriptions.removeAll()
+        viewModel?.cancelAllDownloads()
     }
     
     // MARK: - Setup
@@ -73,7 +92,15 @@ final class ChildrenRegionsVC: BaseVC, ViewModelContainer {
 
 // MARK: - RegionTVCDelegate
 extension ChildrenRegionsVC: RegionTVCDelegate {
-    func didTappedAction(_ cell: RegionTVC, regionFlow: RegionFlow) {
+    func didTappedDownload(_ cell: RegionTVC, regionFlow: RegionFlow) {
+        viewModel?.downloadMap(with: regionFlow)
+    }
+    
+    func didTappedCancel(_ cell: RegionTVC, regionFlow: RegionFlow) {
+        viewModel?.cancelDownload(by: regionFlow.filename)
+    }
+    
+    func didTappedChevron(_ cell: RegionTVC, regionFlow: RegionFlow) {
         viewModel?.showRegionList(with: regionFlow)
     }
 }

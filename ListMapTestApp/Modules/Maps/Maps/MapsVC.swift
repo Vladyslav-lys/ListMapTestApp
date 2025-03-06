@@ -71,7 +71,11 @@ final class MapsVC: BaseVC, ViewModelContainer {
 
 // MARK: - RegionTVCDelegate
 extension MapsVC: RegionTVCDelegate {
-    func didTappedAction(_ cell: RegionTVC, regionFlow: RegionFlow) {
+    func didTappedDownload(_ cell: RegionTVC, regionFlow: RegionFlow) {}
+    
+    func didTappedCancel(_ cell: RegionTVC, regionFlow: RegionFlow) {}
+    
+    func didTappedChevron(_ cell: RegionTVC, regionFlow: RegionFlow) {
         viewModel?.showRegionList(with: regionFlow)
     }
 }

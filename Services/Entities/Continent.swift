@@ -11,13 +11,11 @@ public class Continent {
     public let name: String
     public var countries: [Country]
     public let hasMap: Bool
-    public var progress: Double
     
-    init(name: String, countries: [Country], hasMap: Bool, progress: Double = 0) {
+    init(name: String, countries: [Country], hasMap: Bool) {
         self.name = name
         self.countries = countries
         self.hasMap = hasMap
-        self.progress = progress
     }
 }
 
